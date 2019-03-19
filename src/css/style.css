@@ -26,6 +26,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 }
+
 .wrapper-left {
 	width: 900px;
 }
@@ -38,9 +39,6 @@ body {
 
 .line-list > li {
 	margin-bottom: 50px;
-}
-
-.line-list > li ul li {
 }
 
 .note-text {
