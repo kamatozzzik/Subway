@@ -1,5 +1,5 @@
 export class Subway {
-    constructor() {
-        this.lines = [];
+    constructor(lines) {
+        this.lines = lines;
     }
 }
