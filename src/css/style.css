@@ -1,0 +1,81 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #ccc;
+    font-size: 24px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.subway-list {
+    overflow: auto;
+    height: 910px;
+}
+
+.wrapper-right {
+    height: 950px; 
+    width: 1200px;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper-left {
+    width: 900px;
+}
+
+.line-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.line-list > li {
+    margin-bottom: 50px;
+}
+
+.note-text {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.subway-map,
+.route-window {
+    background-color: #fff;
+    height: 500px;
+    width: 800px;
+    margin-bottom: 5px;
+    overflow: auto;
+}
+
+.route-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.routeName {
+    margin: 20px;
+}
+
+.search-form {
+    padding: 0 100px;
+}
+
+.from-to-input {
+    margin-left: 15px;
+}
+
+.load-file-form {
+    margin-left: 10px;
+}
+
+#file-input {
+    font-size: 24px;
+    cursor: pointer;
+}
