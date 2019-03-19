@@ -7,6 +7,6 @@ let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
 
 textInput.addEventListener('change', function(e) {
-file = e.target.files[0];
-fileReader.readAsBinaryString(file);
+    file = e.target.files[0];
+    fileReader.readAsBinaryString(file);
 });
