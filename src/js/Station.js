@@ -4,8 +4,4 @@ class Station {
         this.connections = [];
         this.siblings = [];
     }
-
-    isLine(line) {
-        return this.connections.includes(line);
-    }
 }
