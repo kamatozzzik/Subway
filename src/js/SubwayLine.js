@@ -2,7 +2,6 @@ export class SubwayLine {
     constructor(name, stations) {
         this.name = name;
         this.stations = stations;
-        this.connections = [];
     }
 
     hasStation(stationName) {
@@ -10,7 +9,7 @@ export class SubwayLine {
             let currentName = station.name.toLowerCase();
             let requestName = stationName.toLowerCase();
             
-            return currentName === requestName ? true : false;
+            return currentName === requestName;
         });
     }
 }
