@@ -1,0 +1,3 @@
+# ignore all files in the build/ and the dist directory
+dist/
+/node_modules/
