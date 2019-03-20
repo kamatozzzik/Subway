@@ -18,7 +18,7 @@ fileReader.addEventListener('loadend', function() {
     subwayData = handleToSubway(subwayData);
 });
 
-
+////////////////////////////// DATA PARSER ///////////////////////////////////
 function handleToArray(data) {
     data = data.split('\n');
     data = Array.from(data);
@@ -34,7 +34,7 @@ function handleToSubway(data) {
     let stationNames = [];
     let names = [];
     let lineNames = [];
-    lineName = null;
+    let lineName = null;
 
     data.forEach(name => {
         if (!name || data.lastIndexOf(name) === data.length - 1) {
@@ -53,3 +53,6 @@ function handleToSubway(data) {
     });
     return { lineNames: lineNames, stationNames: stationNames };
 }
+
+
+/////////////////////////////////// CREATE OBJECTS ///////////////////////////
