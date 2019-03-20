@@ -13,7 +13,9 @@ textInput.addEventListener('change', function(e) {
 });
 
 fileReader.addEventListener('loadend', function() {
-	subwayData = this.result;
+    subwayData = this.result;
+    subwayData = handleToArray(subwayData);
+    subwayData = handleToSubway(subwayData);
 });
 
 
