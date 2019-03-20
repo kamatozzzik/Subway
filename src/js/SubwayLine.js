@@ -5,13 +5,12 @@ export class SubwayLine {
     }
 
     isCicle() {
-        if(this.stations.length) {
+        if (this.stations.length) {
             const last = stations.length - 1;
             return this.stations[0] === stations[last];
         }
-        else {
-            return false;
-        }
+        
+        return false;
     }
 
     hasStation(stationName) {
