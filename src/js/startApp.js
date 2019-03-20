@@ -24,7 +24,6 @@ fileReader.addEventListener('loadend', function() {
     localStorage.setItem(lsKeys.data, storageObj);
 
     currentSubway = createSubway(subwayData);
-
 });
 
 window.addEventListener('load', () => {
