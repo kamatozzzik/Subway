@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Objectiville</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="wrapper-left">
+        <form class="load-file-form">
+          <input type="file" id="file-input" />
+          <label for="file-input">Chose your subway data</label>
+        </form>
+
+        <div class="subway-list">
+          <ul class="line-list">
+          </ul>
+        </div>
+      </div>
+      <div class="wrapper-right">
+        <p class="note-text">Look at your routes</p>
+        <div class="route-window">
+          <form action="" class="search-form">
+            <input
+              type="text"
+              id="from"
+              class="from-to-input"
+              placeholder="From"
+            />
+            <input type="text" id="to" class="from-to-input" placeholder="To" />
+            <button id='search-button'>Search</button>
+          </form>
+          <div class="subway-list">
+            <ul class="route-list">
+              <li class="routeName">
+                Route 1
+                <ul class="station-route">
+                  <li>Station</li>
+                </ul>
+              </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="note-text">Look at your route map</p>
+        <canvas class="route-window"></canvas>
+      </div>
+    </div>
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
