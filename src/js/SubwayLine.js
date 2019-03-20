@@ -9,7 +9,9 @@ export class SubwayLine {
             const last = stations.length - 1;
             return this.stations[0] === stations[last];
         }
-        else return TypeError('Stations are not defined!');
+        else {
+            return false;
+        }
     }
 
     hasStation(stationName) {
