@@ -1,12 +1,15 @@
 export class SubwayLine {
     constructor(name, stations) {
         this.name = name;
-        this.stations = stations;
+        this.stations = stations || [];
     }
 
     isCicle() {
-        const last = stations.length - 1;
-        return this.stations[0] === stations[last];
+        if(this.stations.length) {
+            const last = stations.length - 1;
+            return this.stations[0] === stations[last];
+        }
+        else return TypeError('Stations are not defined!');
     }
 
     hasStation(stationName) {
