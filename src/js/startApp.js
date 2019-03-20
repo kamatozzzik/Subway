@@ -1,6 +1,4 @@
-import { Station } from './Station';
-import { SubwayLine } from './SubwayLine';
-import { Subway } from './Subway';
+import { createSubway } from './subway func'
 import { Route } from './Route';
 import { Parser } from './Parser'
 
