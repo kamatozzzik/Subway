@@ -2,7 +2,6 @@ import { Station } from './Station';
 import { SubwayLine } from './SubwayLine';
 import { Subway } from './Subway';
 import { Route } from './Route';
-import { Parser } from './Parser'
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
