@@ -1,7 +1,5 @@
-import { Station } from './Station';
-import { SubwayLine } from './SubwayLine';
-import { Subway } from './Subway';
-import { Route } from './Route';
+import { createSubway } from './subway func'
+import { Parser } from './Parser'
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
@@ -15,3 +13,5 @@ textInput.addEventListener('change', function(e) {
 fileReader.addEventListener('loadend', function() {
     subwayData = this.result;
 });
+
+
