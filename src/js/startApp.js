@@ -8,7 +8,7 @@ let textInput = document.querySelector('#file-input');
 let subwayData = null;
 
 textInput.addEventListener('change', function(e) {
-    file = e.target.files[0];
+    const file = e.target.files[0];
     fileReader.readAsBinaryString(file);
 });
 
