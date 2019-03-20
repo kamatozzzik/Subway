@@ -16,4 +16,7 @@ fileReader.addEventListener('loadend', function() {
     subwayData = this.result;
     subwayData = parser.handleToArray(subwayData);
     subwayData = parser.handleToSubway(subwayData);
+
+    let storageObj = JSON.stringify(subwayData);
+	localStorage.setItem('data', storageObj);
 });
