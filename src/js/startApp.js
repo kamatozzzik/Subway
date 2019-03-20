@@ -2,6 +2,7 @@ import { Station } from './Station';
 import { SubwayLine } from './SubwayLine';
 import { Subway } from './Subway';
 import { Route } from './Route';
+import { Parser } from './Parser'
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
@@ -14,45 +15,4 @@ textInput.addEventListener('change', function(e) {
 
 fileReader.addEventListener('loadend', function() {
     subwayData = this.result;
-    subwayData = handleToArray(subwayData);
-    subwayData = handleToSubway(subwayData);
 });
-
-////////////////////////////// DATA PARSER ///////////////////////////////////
-function handleToArray(data) {
-    data = data.split('\n');
-    data = Array.from(data);
-
-    data = data.map(name => {
-        return name.trim();
-    });
-
-    return data;
-}
-
-function handleToSubway(data) {
-    let stationNames = [];
-    let names = [];
-    let lineNames = [];
-    let lineName = null;
-
-    data.forEach(name => {
-        if (!name || data.lastIndexOf(name) === data.length - 1) {
-            if (data.lastIndexOf(name) === data.length - 1) {
-                names.push(name);
-            }
-
-            lineName = names.shift();
-            stationNames.push(names);
-            lineNames.push(lineName);
-
-            names = [];
-        } else {
-        names.push(name);
-        }
-    });
-    return { lineNames: lineNames, stationNames: stationNames };
-}
-
-
-/////////////////////////////////// CREATE OBJECTS ///////////////////////////
