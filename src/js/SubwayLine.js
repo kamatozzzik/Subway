@@ -1,15 +1,18 @@
-export class SubwayLine {
-    constructor(name, stations) {
-        this.name = name;
-        this.stations = stations;
-    }
+class SubwayLine {
+	constructor(name, stations) {
+		this.name = name;
+		this.stations = stations;
+		// this.connections = [];
+	}
 
-    hasStation(stationName) {
-        return this.stations.some(station => {
-            let currentName = station.name.toLowerCase();
-            let requestName = stationName.toLowerCase();
-            
-            return currentName === requestName;
-        });
-    }
+	isCicle() {
+		let last = stations.length - 1;
+		return this.stations[0] === stations[last];
+	}
+
+	hasStation(stationName) {
+		return this.stations.some(station => {
+			return stationName === station.name ? true : false;
+		});
+	}
 }
