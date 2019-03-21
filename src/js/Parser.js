@@ -24,16 +24,9 @@ export function parse(data) {
             allNames.push(data[i]);
         }
     }
-
-    stationNames.forEach(name => {
-        if(!allNames.includes(name)) {
-            allNames.push(name);
-        }
-    });
-
-    allNames = allNames.map(name => {
-        return new Station(name);
-    });
+    allNames = stationNames
+                .filter(name => !allNames.includes(name))
+                .map(name => (new Station(name)));
 
     for(let key in result) {
         let stations = [];
