@@ -20,6 +20,6 @@ fileReader.addEventListener('loadend', function() {
 window.addEventListener('load', () => {
     const storageData = localStorage.getItem(storageDataKey);
     if (storageData) {
-        currentSubway = JSON.parse(localStorageData);
+        currentSubway = JSON.parse(storageData);
     }
 });
