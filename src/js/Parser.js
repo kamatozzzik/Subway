@@ -5,21 +5,18 @@ import { Subway } from './Subway';
 export function parse(data) {
     let currentData = data;
 
-    currentData = handleToArray(currentData);
+    currentData = convertToArray(currentData);
     currentData = handleToSubway(currentData);
-
 
     return createSubway(currentData);
 } 
 
-function handleToArray(data) {
+function convertToArray(data) {
     let array = data;
     array = array.split('\n');
     array = Array.from(array);
 
-    array = array.map(name => {
-        return name.trim();
-    });
+    array = array.map(name => name.trim());
 
     return array;
 }
@@ -33,7 +30,7 @@ function handleToSubway(data) {
                 names.push(name);
             }
             let lineName = names.shift();
-            
+
             stationNames.push(names);
             lineNames.push(lineName);
             names = [];
