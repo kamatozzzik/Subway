@@ -3,16 +3,13 @@ import { SubwayLine } from './SubwayLine';
 import { Subway } from './Subway';
 
 export function parse(data) {
-    let currentData = data;
-    return convertToSubway(currentData);
-} 
-
-function convertToSubway(data) {
     let allNames = [];
     let stationNames = [];
     let subwayLines = [];
     let result = {};
-    data = data.split('\n').map(name => name.trim());
+    data = data
+            .split('\n')
+            .map(name => name.trim());
 
     for (let i = 0; i < data.length; i++) {
         if (!data[i] || i === data.length - 1) {
