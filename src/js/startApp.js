@@ -7,7 +7,7 @@ const storageDataKey = 'data';
 
 
 textInput.addEventListener('change', function(e) {
-    let file = e.target.files[0];
+    const file = e.target.files[0];
     fileReader.readAsBinaryString(file);
 });
 
@@ -18,7 +18,7 @@ fileReader.addEventListener('loadend', function() {
 });
 
 window.addEventListener('load', () => {
-    if (localStorageData) {
+    if (localStorage.getItem(storageDataKey)) {
         currentSubway = JSON.parse(localStorage.getItem(storageDataKey));
     }
 });
