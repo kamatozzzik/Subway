@@ -2,7 +2,7 @@ import { Station } from './Station';
 import { SubwayLine } from './SubwayLine';
 import { Subway } from './Subway';
 
-export function parseToSubway(data) {
+export function parse(data) {
     let currentData = data;
 
     currentData = handleToArray(currentData);
@@ -26,14 +26,14 @@ function handleToArray(data) {
 
 function handleToSubway(data) {
     let stationNames = [], names = [], lineNames = [];
-    let lineName = null;
 
     data.forEach(name => {
         if (!name || data.lastIndexOf(name) === data.length - 1) {
             if (data.lastIndexOf(name) === data.length - 1) {
                 names.push(name);
             }
-            lineName = names.shift();
+            let lineName = names.shift();
+            
             stationNames.push(names);
             lineNames.push(lineName);
             names = [];
@@ -46,10 +46,10 @@ function handleToSubway(data) {
 }
 
 function createSubway(data) {
-    let stationNames = data.stationNames.concat(),
-    stationList = [],
-    lines = data.lineNames.concat(),
-    allLines = [];
+    let stationNames = data.stationNames;
+    let stationList = [];
+    let lines = data.lineNames;
+    let allLines = [];
 
     for (let i = 0; i < stationNames.length; i++) {
         for (let j = 0; j < stationNames[i].length; j++) {
@@ -59,7 +59,7 @@ function createSubway(data) {
     }
 
     stationList = stationList.map(name => {
-        return createStation(name);
+        return new Station(name);
     });
 
     for (let i = 0; i < lines.length; i++) {
@@ -71,22 +71,9 @@ function createSubway(data) {
                 }
             });
         });
-
-        allLines[i] = createLine(lines[i], lineStations);
+        new SubwayLine(lines[i], lineStations);
         lineStations = [];
     }
 
     return new Subway(allLines);
-}
-
-
-function createLine(subwayName, stations) {
-    let currentStations = stations.concat();
-    let line = new SubwayLine(subwayName,currentStations);
-    return line;
-}
-
-function createStation(name) {
-    let station = new Station(name);
-    return station;
 }
