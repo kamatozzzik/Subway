@@ -23,6 +23,3 @@ window.addEventListener('load', () => {
         currentSubway = JSON.parse(localStorageData);
     }
 });
-
-
-
