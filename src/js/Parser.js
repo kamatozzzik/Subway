@@ -4,7 +4,6 @@ import { Subway } from './Subway';
 
 export function parse(data) {
     let currentData = data;
-
     currentData = convertToArray(currentData);
     currentData = convertToSubway(currentData);
 
@@ -23,21 +22,20 @@ function convertToSubway(data) {
     let stationNames = [];
     let lineNames = [];
 
-    data.forEach(name => {
-        if (!name || data.lastIndexOf(name) === data.length - 1) {
-            if (data.lastIndexOf(name) === data.length - 1) {
-                allNames.push(name);
-            }
-            let lineName = allNames.shift();
-            stationNames.push(allNames);
+	for(let i = 0; i < data.length; i++) {
+		if (!data[i] || i === data.length - 1) {
+			if (i === data.length - 1) {
+				allNames.push(data[i]);
+			}
+			lineName = allNames.shift();
+			stationNames.push(allNames);
+			lineNames.push(lineName);
 
-            lineNames.push(lineName);
-            allNames = [];
-
-        } else {
-            allNames.push(name);
-        }
-    });
+			names = [];
+		} else {
+			allNames.push(data[i]);
+		}
+	}
 
     return { lineNames: lineNames, stationNames: stationNames };
 }
