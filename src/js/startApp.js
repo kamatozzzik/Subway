@@ -12,7 +12,7 @@ textInput.addEventListener('change', function(e) {
 });
 
 fileReader.addEventListener('loadend', function() {
-    currentSubway = parse.parseToSubway(this.result);
+    currentSubway = parseToSubway(this.result);
 
     let storageObj = JSON.stringify(currentSubway);
     localStorage.setItem(localStorageKey, storageObj);
