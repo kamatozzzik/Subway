@@ -1,14 +1,10 @@
-import { createSubway } from './subway func'
-import { Parser } from './Parser'
+import { parseToSubway } from './Parser'
 
 let fileReader = new FileReader();
-let parser = new Parser();
 let textInput = document.querySelector('#file-input');
 let currentSubway = null; 
-let subwayData = null;
-const lsKeys = {
-    data: 'data'
-}
+const localStorageKey = 'data';
+
 
 textInput.addEventListener('change', function(e) {
     let file = e.target.files[0];
@@ -16,22 +12,18 @@ textInput.addEventListener('change', function(e) {
 });
 
 fileReader.addEventListener('loadend', function() {
-    subwayData = this.result;
-    subwayData = parser.handleToArray(subwayData);
-    subwayData = parser.handleToSubway(subwayData);
+    currentSubway = parse.parseToSubway(this.result);
 
-    let storageObj = JSON.stringify(subwayData);
-    localStorage.setItem(lsKeys.data, storageObj);
+    let storageObj = JSON.stringify(currentSubway);
+    localStorage.setItem(localStorageKey, storageObj);
 
-    currentSubway = createSubway(subwayData);
 });
 
 window.addEventListener('load', () => {
-    let lsData = localStorage.getItem(lsKeys.data);
+    let localStorageData = localStorage.getItem(localStorageKey);
 
-    if (lsData) {
-        subwayData = JSON.parse(lsData);
-	    currentSubway = createSubway(subwayData);
+    if (localStorageData) {
+        currentSubway = JSON.parse(localStorageData);
     }
 });
 
