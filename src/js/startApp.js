@@ -5,7 +5,6 @@ let textInput = document.querySelector('#file-input');
 let currentSubway = null; 
 const storageDataKey = 'data';
 
-
 textInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     fileReader.readAsBinaryString(file);
