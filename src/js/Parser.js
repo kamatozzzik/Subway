@@ -22,20 +22,20 @@ function convertToArray(data) {
 }
 
 function convertToSubway(data) {
-    let stationNames = [], names = [], lineNames = [];
+    let stationNames = [], allNames = [], lineNames = [];
 
     data.forEach(name => {
         if (!name || data.lastIndexOf(name) === data.length - 1) {
             if (data.lastIndexOf(name) === data.length - 1) {
-                names.push(name);
+                allNames.push(name);
             }
-            let lineName = names.shift();
+            let lineName = allNames.shift();
 
-            stationNames.push(names);
+            stationNames.push(allNames);
             lineNames.push(lineName);
             names = [];
         } else {
-        names.push(name);
+        allNames.push(name);
         }
     });
 
