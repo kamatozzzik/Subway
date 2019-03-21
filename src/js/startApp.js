@@ -1,4 +1,4 @@
-import { parseToSubway } from './Parser'
+import { parse } from './Parser'
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
@@ -12,7 +12,7 @@ textInput.addEventListener('change', function(e) {
 });
 
 fileReader.addEventListener('loadend', function() {
-    currentSubway = parseToSubway(this.result);
+    currentSubway = parse(this.result);
 
     let storageObj = JSON.stringify(currentSubway);
     localStorage.setItem(localStorageKey, storageObj);
