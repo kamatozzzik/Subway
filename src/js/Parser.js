@@ -43,9 +43,9 @@ function convertToSubway(data) {
 }
 
 function buildSubwayModel(data) {
-    let stationNames = data.stationNames.concat();
+    let stationNames = data.stationNames;
     let stationList = [];
-    let lines = data.lineNames.concat();
+    let lines = data.lineNames;
     let allLines = [];
 
     for (let i = 0; i < stationNames.length; i++) {
@@ -68,7 +68,7 @@ function buildSubwayModel(data) {
                 }
             });
         });
-        allLines[i] = new SubwayLine(lines[i], lineStations.concat());
+        allLines[i] = new SubwayLine(lines[i], lineStations);
         lineStations = [];
     }
 
