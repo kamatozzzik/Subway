@@ -12,17 +12,16 @@ export function parse(data) {
 } 
 
 function convertToArray(data) {
-    let array = data;
-    array = array.split('\n');
-    array = Array.from(array);
+    data = data.split('\n');
+    data = data.map(name => name.trim());
 
-    array = array.map(name => name.trim());
-
-    return array;
+    return data;
 }
 
 function convertToSubway(data) {
-    let stationNames = [], allNames = [], lineNames = [];
+    let allNames = [];
+    let stationNames = [];
+    let lineNames = [];
 
     data.forEach(name => {
         if (!name || data.lastIndexOf(name) === data.length - 1) {
@@ -30,12 +29,13 @@ function convertToSubway(data) {
                 allNames.push(name);
             }
             let lineName = allNames.shift();
-
             stationNames.push(allNames);
+
             lineNames.push(lineName);
-            names = [];
+            allNames = [];
+
         } else {
-        allNames.push(name);
+            allNames.push(name);
         }
     });
 
@@ -43,9 +43,9 @@ function convertToSubway(data) {
 }
 
 function buildSubwayModel(data) {
-    let stationNames = data.stationNames;
+    let stationNames = data.stationNames.concat();
     let stationList = [];
-    let lines = data.lineNames;
+    let lines = data.lineNames.concat();
     let allLines = [];
 
     for (let i = 0; i < stationNames.length; i++) {
@@ -68,7 +68,7 @@ function buildSubwayModel(data) {
                 }
             });
         });
-        new SubwayLine(lines[i], lineStations);
+        allLines[i] = new SubwayLine(lines[i], lineStations.concat());
         lineStations = [];
     }
 
