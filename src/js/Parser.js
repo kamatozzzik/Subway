@@ -28,7 +28,7 @@ export function parse(data) {
                 .filter(name => !allNames.includes(name))
                 .map(name => (new Station(name)));
 
-    for(let key in result) {
+    for (let key in result) {
         let stations = [];
         stations = result[key].map(name => {
             for (let station of allNames) {
