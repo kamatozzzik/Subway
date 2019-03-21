@@ -6,9 +6,9 @@ export function parse(data) {
     let currentData = data;
 
     currentData = convertToArray(currentData);
-    currentData = handleToSubway(currentData);
+    currentData = convertToSubway(currentData);
 
-    return createSubway(currentData);
+    return buildSubwayModel(currentData);
 } 
 
 function convertToArray(data) {
@@ -21,7 +21,7 @@ function convertToArray(data) {
     return array;
 }
 
-function handleToSubway(data) {
+function convertToSubway(data) {
     let stationNames = [], names = [], lineNames = [];
 
     data.forEach(name => {
@@ -42,7 +42,7 @@ function handleToSubway(data) {
     return { lineNames: lineNames, stationNames: stationNames };
 }
 
-function createSubway(data) {
+function buildSubwayModel(data) {
     let stationNames = data.stationNames;
     let stationList = [];
     let lines = data.lineNames;
