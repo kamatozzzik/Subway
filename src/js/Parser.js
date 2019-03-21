@@ -2,7 +2,50 @@ import { Station } from './Station';
 import { SubwayLine } from './SubwayLine';
 import { Subway } from './Subway';
 
-export function createSubway(data) {
+export function parseToSubway(data) {
+    let currentData = data;
+
+    currentData = handleToArray(currentData);
+    currentData = handleToSubway(currentData);
+
+
+    return createSubway(currentData);
+} 
+
+function handleToArray(data) {
+    let array = data;
+    array = array.split('\n');
+    array = Array.from(array);
+
+    array = array.map(name => {
+        return name.trim();
+    });
+
+    return array;
+}
+
+function handleToSubway(data) {
+    let stationNames = [], names = [], lineNames = [];
+    let lineName = null;
+
+    data.forEach(name => {
+        if (!name || data.lastIndexOf(name) === data.length - 1) {
+            if (data.lastIndexOf(name) === data.length - 1) {
+                names.push(name);
+            }
+            lineName = names.shift();
+            stationNames.push(names);
+            lineNames.push(lineName);
+            names = [];
+        } else {
+        names.push(name);
+        }
+    });
+
+    return { lineNames: lineNames, stationNames: stationNames };
+}
+
+function createSubway(data) {
     let stationNames = data.stationNames.concat(),
     stationList = [],
     lines = data.lineNames.concat(),
@@ -35,6 +78,7 @@ export function createSubway(data) {
 
     return new Subway(allLines);
 }
+
 
 function createLine(subwayName, stations) {
     let currentStations = stations.concat();
