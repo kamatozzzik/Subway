@@ -13,13 +13,14 @@ textInput.addEventListener('change', function(e) {
 
 fileReader.addEventListener('loadend', function() {
     currentSubway = parse(this.result);
-    localStorage.setItem(storageDataKey, JSON.stringify(currentSubway));
-
+    const storageData = JSON.stringify(currentSubway);
+    localStorage.setItem(storageDataKey, storageData);
 });
 
 window.addEventListener('load', () => {
-    if (localStorage.getItem(storageDataKey)) {
-        currentSubway = JSON.parse(localStorage.getItem(storageDataKey));
+    const storageData = localStorage.getItem(storageDataKey);
+    if (storageData) {
+        currentSubway = JSON.parse(localStorageData);
     }
 });
 
