@@ -3,7 +3,7 @@ import { parse } from './Parser'
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
 let currentSubway = null; 
-const localStorageKey = 'data';
+const storageDataKey = 'data';
 
 
 textInput.addEventListener('change', function(e) {
@@ -13,17 +13,13 @@ textInput.addEventListener('change', function(e) {
 
 fileReader.addEventListener('loadend', function() {
     currentSubway = parse(this.result);
-
-    let storageObj = JSON.stringify(currentSubway);
-    localStorage.setItem(localStorageKey, storageObj);
+    localStorage.setItem(storageDataKey, JSON.stringify(currentSubway));
 
 });
 
 window.addEventListener('load', () => {
-    let localStorageData = localStorage.getItem(localStorageKey);
-
     if (localStorageData) {
-        currentSubway = JSON.parse(localStorageData);
+        currentSubway = JSON.parse(localStorage.getItem(storageDataKey));
     }
 });
 
