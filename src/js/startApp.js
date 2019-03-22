@@ -1,8 +1,8 @@
-import { parse } from './Parser'
+import { parse } from './Parser';
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
-let currentSubway = null; 
+let currentSubway = null;
 const storageDataKey = 'data';
 
 textInput.addEventListener('change', function(e) {
