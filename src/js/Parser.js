@@ -8,8 +8,8 @@ export function parse(data) {
     let subwayLines = [];
     let result = {};
     data = data
-            .split('\n')
-            .map(name => name.trim());
+        .split('\n')
+        .map(name => name.trim());
 
     for (let i = 0; i < data.length; i++) {
         if (!data[i] || i === data.length - 1) {
@@ -25,8 +25,8 @@ export function parse(data) {
         }
     }
     allNames = stationNames
-                .filter(name => !allNames.includes(name))
-                .map(name => (new Station(name)));
+        .filter(name => !allNames.includes(name))
+        .map(name => (new Station(name)));
 
     for (let key in result) {
         let stations = [];
