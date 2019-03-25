@@ -12,7 +12,8 @@ export function getRoute(from = '', to = '', subway) {
             const name = station.name.toLowerCase();
             if (name === fromName) {
                 fromStation = station;
-            } else if (name === toName) {
+            }
+            if (name === toName) {
                 toStation = station;
             }
         });
@@ -30,6 +31,7 @@ function createRoutes(start, end, route = [], routes = []) {
     if (start === end) {
         return routes;
     }
+
     route.push(start);
     start.getSiblings().forEach(station => {
         if (station === end) {
@@ -40,7 +42,10 @@ function createRoutes(start, end, route = [], routes = []) {
             route = createRoutes(station, end, route, routes);
         }
     });
-    if (route.length === 1) return routes;
+    if (route.length === 1) {
+        return routes;
+    }
     route.pop();
+
     return route;
 }
