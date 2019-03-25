@@ -6,7 +6,7 @@ export function parse(data) {
     let allNames = [];
     let stationNames = {};
     let subwayLines = [];
-    let result = {};
+    // let result = {};
 
     data = data.split('\n').map(name => name.trim());
 
@@ -17,21 +17,19 @@ export function parse(data) {
             }
             let lineName = allNames.shift();
 
-            allNames.forEach(name => {
-                stationNames[name] = new Station(name);
+            allNames = allNames.map(name => {
+                if (!stationNames[name]) {
+                    stationNames[name] = new Station(name);
+                }
+                return stationNames[name];
             });
-            result[lineName] = allNames;
+
+            subwayLines.push(new SubwayLine(lineName, allNames));
             allNames = [];
         } else {
             allNames.push(data[i]);
         }
     }
-
-    for (let key in result) {
-        let stations = [];
-
-        stations = result[key].map(name => stationNames[name]);
-        subwayLines.push(new SubwayLine(key, stations));
-    }
+    console.log(subwayLines);
     return new Subway(subwayLines);
 }
