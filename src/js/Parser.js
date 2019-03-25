@@ -29,6 +29,25 @@ export function parse(data) {
             allNames.push(data[i]);
         }
     }
+    setConnections(subwayLines);
 
     return new Subway(subwayLines);
+}
+
+function setConnections(lines) {
+    lines.forEach(line => {
+        const len = line.stations.length;
+        for (let i = 0; i < len; i++) {
+            let next = line.stations[i + 1];
+            if (!line.stations[i].getSiblings().includes(next) && next) {
+                line.stations[i].setSibling(next);
+            }
+        }
+        for (let i = len - 1; i > 0; i--) {
+            let prev = line.stations[i - 1];
+            if (!line.stations[i].getSiblings().includes(prev) && prev) {
+                line.stations[i].setSibling(prev);
+            }
+        }
+    });
 }
