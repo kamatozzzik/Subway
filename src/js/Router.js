@@ -7,28 +7,40 @@ export function getRoute(from = '', to = '', subway) {
     let toStation = null;
     let routes = [];
 
-    subway.lines.forEach(line => {
-        line.stations.forEach(station => {
-            const name = station.name.toLowerCase();
+    const lineLen = subway.lines.length;
+    const stationLen = subway.lines.stations.length;
+
+    for (let i = 0; i < lineLen; i++) {
+        for (let j = 0; j < stationLen; j++) {
+            const name = subway.lines[i].stations[j].name.toLowerCase();
+            a;
+            if (fromStation && toStation) {
+                break;
+            }
             if (name === fromName) {
-                fromStation = station;
+                fromStation = subway.lines[i].stations[j];
+            } else if (name === toName) {
+                toStation = subway.lines[i].stations[j];
             }
-            if (name === toName) {
-                toStation = station;
-            }
-        });
-    });
+        }
+    }
 
     routes = createRoutes(fromStation, toStation);
-    routes.sort((a, b) => {
-        return a.length - b.length;
-    });
 
-    return routes[0];
+    if (routes.length) {
+        routes.sort((a, b) => {
+            return a.length - b.length;
+        });
+        return routes[0];
+    } else {
+        throw new Error('Route is not found');
+    }
 }
 
 function createRoutes(start, end, route = [], routes = []) {
     if (start === end) {
+        route.push(start);
+        routes.push(route);
         return routes;
     }
 
@@ -36,7 +48,7 @@ function createRoutes(start, end, route = [], routes = []) {
     start.getSiblings().forEach(station => {
         if (station === end) {
             route.push(station);
-            routes.push(new Route(route.concat())); ///// It works with the link to current array, because I'm creating new array here
+            routes.push(new Route(route.concat()));
             route.pop();
         } else if (!route.includes(station)) {
             route = createRoutes(station, end, route, routes);
