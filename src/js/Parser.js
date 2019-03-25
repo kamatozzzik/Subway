@@ -39,14 +39,14 @@ function setConnections(lines) {
         const len = line.stations.length;
         for (let i = 0; i < len; i++) {
             let next = line.stations[i + 1];
-            if (next && !line.stations[i].getSiblings().includes(next)) {
-                line.stations[i].setSibling(next);
+            if (next) {
+                line.stations[i].addSibling(next);
             }
         }
         for (let i = len - 1; i > 0; i--) {
             let prev = line.stations[i - 1];
-            if (prev && !line.stations[i].getSiblings().includes(prev)) {
-                line.stations[i].setSibling(prev);
+            if (prev) {
+                line.stations[i].addSibling(prev);
             }
         }
     });
