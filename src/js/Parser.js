@@ -6,7 +6,6 @@ export function parse(data) {
     let allNames = [];
     let stationNames = {};
     let subwayLines = [];
-    let stationList = [];
 
     data = data.split('\n').map(name => name.trim());
 
@@ -17,7 +16,7 @@ export function parse(data) {
             }
             let lineName = allNames.shift();
 
-            stationList = allNames.map(name => {
+            let stationList = allNames.map(name => {
                 if (!stationNames[name]) {
                     stationNames[name] = new Station(name);
                 }
