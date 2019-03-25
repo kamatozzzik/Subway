@@ -45,10 +45,9 @@ body {
     padding: 10px 0;
 }
 
-.subway-map,
 .route-window {
     background-color: #fff;
-    height: 500px;
+    height: 700px;
     width: 800px;
     margin-bottom: 5px;
     overflow: hidden;
