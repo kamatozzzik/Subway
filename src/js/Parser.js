@@ -6,7 +6,6 @@ export function parse(data) {
     let allNames = [];
     let stationNames = {};
     let subwayLines = [];
-    // let result = {};
 
     data = data.split('\n').map(name => name.trim());
 
@@ -30,6 +29,6 @@ export function parse(data) {
             allNames.push(data[i]);
         }
     }
-    console.log(subwayLines);
+
     return new Subway(subwayLines);
 }
