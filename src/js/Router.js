@@ -13,7 +13,7 @@ export function getRoute(from = '', to = '', subway) {
     for (let i = 0; i < lineLen; i++) {
         for (let j = 0; j < stationLen; j++) {
             const name = subway.lines[i].stations[j].name.toLowerCase();
-            a;
+
             if (fromStation && toStation) {
                 break;
             }
@@ -33,7 +33,7 @@ export function getRoute(from = '', to = '', subway) {
         });
         return routes[0];
     } else {
-        throw new Error('Route is not found');
+        return [];
     }
 }
 
@@ -48,6 +48,7 @@ function createRoutes(start, end, route = [], routes = []) {
     start.getSiblings().forEach(station => {
         if (station === end) {
             route.push(station);
+            // It works with the link to current array, because I'm creating new array here
             routes.push(new Route(route.concat()));
             route.pop();
         } else if (!route.includes(station)) {
