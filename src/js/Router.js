@@ -33,7 +33,7 @@ export function getRoute(from = '', to = '', subway) {
         });
         return routes[0];
     } else {
-        return [];
+        return null;
     }
 }
 
