@@ -4,8 +4,10 @@ export class Station {
         this._siblings = [];
     }
 
-    setSibling(sibling) {
-        this._siblings.push(sibling);
+    addSibling(sibling) {
+        if (!this._siblings.includes(sibling)) {
+            this._siblings.push(sibling);
+        }
     }
 
     getSiblings() {

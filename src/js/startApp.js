@@ -1,4 +1,5 @@
 import { parse } from './Parser';
+import { getRoute } from './Router';
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
@@ -11,14 +12,15 @@ textInput.addEventListener('change', function(e) {
 });
 
 fileReader.addEventListener('loadend', function() {
-    currentSubway = parse(this.result);
-    const storageData = JSON.stringify(currentSubway);
+    const storageData = JSON.stringify(this.result);
     localStorage.setItem(storageDataKey, storageData);
+    currentSubway = parse(this.result);
 });
 
 window.addEventListener('load', () => {
-    const storageData = localStorage.getItem(storageDataKey);
+    let storageData = localStorage.getItem(storageDataKey);
     if (storageData) {
-        currentSubway = JSON.parse(storageData);
+        storageData = JSON.parse(storageData);
+        currentSubway = parse(storageData);
     }
 });
