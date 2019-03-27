@@ -1,14 +1,12 @@
-export function renderSubwayList(subway) {
+export function renderSubwayList(subwayLines) {
     const lineList = document.createElement('ul');
     const subwayList = document.querySelector('.subway-list');
     lineList.classList.add('line-list');
 
     /// Before each render it cleans place for rendering
-    while (subwayList.firstChild) {
-        subwayList.removeChild(subwayList.firstChild);
-    }
+    subwayList.removeChild(subwayList.firstChild);
 
-    subway.lines.forEach(line => {
+    subwayLines.forEach(line => {
         const liLineList = document.createElement('li');
         liLineList.classList.add('line-name');
         const ulStationList = document.createElement('ul');
@@ -27,14 +25,14 @@ export function renderSubwayList(subway) {
     subwayList.appendChild(lineList);
 }
 
-export function renderRoute(route) {
-    const stations = route.route.stations;
-    const navList = route.navList;
-    const routeList = document.querySelector('.route-list');
+export function renderRoute(routeMap) {
+    const stations = routeMap.route.stations;
+    const navList = routeMap.navList;
+    const routeWindow = document.querySelector('.routes');
+    const routeList = document.createElement('ul');
+    routeList.classList.add('route-list');
 
-    while (routeList.firstChild) {
-        routeList.removeChild(routeList.firstChild);
-    }
+    routeWindow.removeChild(routeWindow.firstChild);
 
     stations.forEach(station => {
         let liStationList = document.createElement('li');
@@ -45,4 +43,5 @@ export function renderRoute(route) {
             navList[station.name].name
         }</b>`;
     });
+    routeWindow.appendChild(routeList);
 }
