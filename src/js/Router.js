@@ -23,6 +23,7 @@ export function getRoute(from = '', to = '', subway) {
             }
         }
     }
+
     if (!fromStation) {
         throw new Error(`${from} is not correct name`);
     }
@@ -69,7 +70,7 @@ function createRoutes(start, end, route = [], routes = []) {
     return route;
 }
 
-export function createNavList(route, subway) {
+function createNavList(route, subway) {
     let lineList = {};
     let nav = {};
     let stations = route.stations;
@@ -95,9 +96,11 @@ export function createNavList(route, subway) {
             : (prevList = lineList[stations[i - 1].name]);
 
         for (let line of currentList) {
+            /// If next station has connection with current station, then add line to data
             if (nextList.includes(line)) {
                 nav[stations[i].name] = line;
                 break;
+                /// If it is the last iteration to add last line to data
             } else if (prevList.includes(line)) {
                 nav[stations[i].name] = line;
                 break;
