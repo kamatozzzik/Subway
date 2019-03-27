@@ -1,5 +1,5 @@
 import { parse } from './Parser';
-import { getRoute, getNavList } from './Router';
+import { getRoute } from './Router';
 import { renderSubwayList, renderRoute } from './View';
 
 let fileReader = new FileReader();
@@ -34,6 +34,5 @@ searchButton.addEventListener('click', e => {
     const fromInput = document.querySelector('#from');
     const toInput = document.querySelector('#to');
     const route = getRoute(fromInput.value, toInput.value, currentSubway);
-
     renderRoute(route);
 });
