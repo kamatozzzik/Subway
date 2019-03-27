@@ -1,9 +1,10 @@
 import { parse } from './Parser';
-import { getRoute } from './Router';
-import { renderSubwayList } from './View';
+import { getRoute, getNavList } from './Router';
+import { renderSubwayList, renderRoute } from './View';
 
 let fileReader = new FileReader();
-let textInput = document.querySelector('#file-input');
+const textInput = document.querySelector('#file-input');
+const searchButton = document.querySelector('#search-button');
 let currentSubway = null;
 const storageDataKey = 'data';
 
@@ -26,4 +27,13 @@ window.addEventListener('load', () => {
         currentSubway = parse(storageData);
         renderSubwayList(currentSubway);
     }
+});
+
+searchButton.addEventListener('click', e => {
+    e.preventDefault();
+    const fromInput = document.querySelector('#from');
+    const toInput = document.querySelector('#to');
+    const route = getRoute(fromInput.value, toInput.value, currentSubway);
+
+    renderRoute(route);
 });
