@@ -55,7 +55,7 @@ body {
 
 .route-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     overflow: auto;
     height: 650px;
 }
@@ -63,6 +63,11 @@ body {
 .route-name {
     margin: 20px;
     color: red;
+}
+
+.red-text {
+    color: red;
+    margin: 0 20px;
 }
 
 .route-name li {
