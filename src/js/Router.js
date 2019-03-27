@@ -6,11 +6,10 @@ export function getRoute(from = '', to = '', subway) {
     let fromStation = null;
     let toStation = null;
     let routes = [];
-
     const lineLen = subway.lines.length;
-    const stationLen = subway.lines.stations.length;
 
     for (let i = 0; i < lineLen; i++) {
+        const stationLen = subway.lines[i].stations.length;
         for (let j = 0; j < stationLen; j++) {
             const name = subway.lines[i].stations[j].name.toLowerCase();
 
@@ -24,6 +23,12 @@ export function getRoute(from = '', to = '', subway) {
             }
         }
     }
+    if (!fromStation) {
+        throw new Error(`${from} is not correct name`);
+    }
+    if (!toStation) {
+        throw new Error(`${to} is not correct name`);
+    }
 
     routes = createRoutes(fromStation, toStation);
 
@@ -31,7 +36,8 @@ export function getRoute(from = '', to = '', subway) {
         routes.sort((a, b) => {
             return a.length - b.length;
         });
-        return routes[0];
+        const navList = createNavList(routes[0], subway);
+        return { route: routes[0], navList: navList };
     } else {
         return null;
     }
@@ -61,4 +67,42 @@ function createRoutes(start, end, route = [], routes = []) {
     route.pop();
 
     return route;
+}
+
+export function createNavList(route, subway) {
+    let lineList = {};
+    let nav = {};
+    let stations = route.stations;
+    const len = stations.length;
+
+    stations.forEach(station => {
+        let lines = [];
+        subway.lines.forEach(line => {
+            if (line.hasStation(station.name)) {
+                lines.push(line);
+                lineList[station.name] = lines;
+            }
+        });
+    });
+
+    for (let i = 0; i < len; i++) {
+        const currentList = lineList[stations[i].name];
+        let nextList = [];
+        let prevList = [];
+
+        i !== len - 1
+            ? (nextList = lineList[stations[i + 1].name])
+            : (prevList = lineList[stations[i - 1].name]);
+
+        for (let line of currentList) {
+            if (nextList.includes(line)) {
+                nav[stations[i].name] = line;
+                break;
+            } else if (prevList.includes(line)) {
+                nav[stations[i].name] = line;
+                break;
+            }
+        }
+    }
+    return nav;
 }
