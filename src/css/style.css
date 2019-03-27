@@ -57,7 +57,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
-    height: 370px;
+    height: 650px;
 }
 
 .route-name {
