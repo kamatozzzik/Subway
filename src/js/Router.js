@@ -1,34 +1,34 @@
 import { Route } from './Route';
 
-export function getRoute(from = '', to = '', subway) {
+export function getRoute(from = '', to = '', subwayLines) {
     const fromName = from.toLowerCase().trim();
     const toName = to.toLowerCase().trim();
     let fromStation = null;
     let toStation = null;
     let routes = [];
-    const lineLen = subway.lines.length;
+    const lineLen = subwayLines.length;
 
     for (let i = 0; i < lineLen; i++) {
-        const stationLen = subway.lines[i].stations.length;
+        const stationLen = subwayLines[i].stations.length;
         for (let j = 0; j < stationLen; j++) {
-            const name = subway.lines[i].stations[j].name.toLowerCase();
+            const name = subwayLines[i].stations[j].name.toLowerCase();
 
             if (fromStation && toStation) {
                 break;
             }
             if (name === fromName) {
-                fromStation = subway.lines[i].stations[j];
+                fromStation = subwayLines[i].stations[j];
             } else if (name === toName) {
-                toStation = subway.lines[i].stations[j];
+                toStation = subwayLines[i].stations[j];
             }
         }
     }
 
     if (!fromStation) {
-        throw new Error(`${from} is not correct name`);
+        throw new Error(`Station name ${from} is not correct`);
     }
     if (!toStation) {
-        throw new Error(`${to} is not correct name`);
+        throw new Error(`Station name ${to} is not correct`);
     }
 
     routes = createRoutes(fromStation, toStation);
@@ -37,8 +37,7 @@ export function getRoute(from = '', to = '', subway) {
         routes.sort((a, b) => {
             return a.length - b.length;
         });
-        const navList = createNavList(routes[0], subway);
-        return { route: routes[0], navList: navList };
+        return routes[0];
     } else {
         return null;
     }
@@ -70,7 +69,7 @@ function createRoutes(start, end, route = [], routes = []) {
     return route;
 }
 
-function createNavList(route, subway) {
+export function createNavList(route, subwayLines) {
     let lineList = {};
     let nav = {};
     let stations = route.stations;
@@ -78,7 +77,7 @@ function createNavList(route, subway) {
 
     stations.forEach(station => {
         let lines = [];
-        subway.lines.forEach(line => {
+        subwayLines.forEach(line => {
             if (line.hasStation(station.name)) {
                 lines.push(line);
                 lineList[station.name] = lines;
