@@ -27,15 +27,21 @@ export function renderSubwayList(subway) {
 }
 
 export function renderRoute(route) {
+    const stations = route.route.stations;
+    const navList = route.navList;
     const routeList = document.querySelector('.route-list');
 
     while (routeList.firstChild) {
         routeList.removeChild(routeList.firstChild);
     }
 
-    route.stations.forEach(station => {
+    stations.forEach(station => {
         let liStationList = document.createElement('li');
         routeList.appendChild(liStationList);
-        liStationList.textContent = station.name;
+        liStationList.innerHTML = `${
+            station.name
+        } <span class='red-text'> on </span> <b>${
+            navList[station.name].name
+        }</b>`;
     });
 }
