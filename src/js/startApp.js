@@ -1,5 +1,6 @@
 import { parse } from './Parser';
 import { getRoute } from './Router';
+import { renderSubwayList } from './View';
 
 let fileReader = new FileReader();
 let textInput = document.querySelector('#file-input');
@@ -15,6 +16,7 @@ fileReader.addEventListener('loadend', function() {
     const storageData = JSON.stringify(this.result);
     localStorage.setItem(storageDataKey, storageData);
     currentSubway = parse(this.result);
+    renderSubwayList(currentSubway);
 });
 
 window.addEventListener('load', () => {
@@ -22,5 +24,6 @@ window.addEventListener('load', () => {
     if (storageData) {
         storageData = JSON.parse(storageData);
         currentSubway = parse(storageData);
+        renderSubwayList(currentSubway);
     }
 });
