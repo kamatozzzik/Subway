@@ -1,5 +1,5 @@
 import { parse } from './Parser';
-import { getRoute } from './Router';
+import { getRoute, createNavList } from './Router';
 import { renderSubwayList, renderRoute } from './View';
 
 let fileReader = new FileReader();
@@ -17,7 +17,7 @@ fileReader.addEventListener('loadend', function() {
     const storageData = JSON.stringify(this.result);
     localStorage.setItem(storageDataKey, storageData);
     currentSubway = parse(this.result);
-    renderSubwayList(currentSubway);
+    renderSubwayList(currentSubway.lines);
 });
 
 window.addEventListener('load', () => {
@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
     if (storageData) {
         storageData = JSON.parse(storageData);
         currentSubway = parse(storageData);
-        renderSubwayList(currentSubway);
+        renderSubwayList(currentSubway.lines);
     }
 });
 
@@ -33,6 +33,7 @@ searchButton.addEventListener('click', e => {
     e.preventDefault();
     const fromInput = document.querySelector('#from');
     const toInput = document.querySelector('#to');
-    const route = getRoute(fromInput.value, toInput.value, currentSubway);
-    renderRoute(route);
+    const route = getRoute(fromInput.value, toInput.value, currentSubway.lines);
+    const navList = createNavList(route, currentSubway.lines);
+    renderRoute({ route: route, navList: navList });
 });
