@@ -3,6 +3,7 @@ export function renderSubwayList(subway) {
     const subwayList = document.querySelector('.subway-list');
     lineList.classList.add('line-list');
 
+    /// Before each render it cleans place for rendering
     while (subwayList.firstChild) {
         subwayList.removeChild(subwayList.firstChild);
     }
